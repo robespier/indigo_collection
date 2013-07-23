@@ -18,6 +18,7 @@ mc.prototype = {
 		this.printList = []; //Массив строк из принт-листа
 		this.PDFSettings = new PDFSaveOptions(); // Настройки экспорта в PDF
 		this.PDFSettings.acrobatLayers = false;
+		this.outputFolder;
 		this.hotfolderName = 'CMYK';
 		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 	},
@@ -169,7 +170,18 @@ mc.prototype = {
 		myStyle = this.getStyle();
 		myStyle.applyTo(this.currentLabel); // Применям графический стиль к этикетке
 	},
-	/*
+
+
+// Получаем полное имя PDF-файла сборки
+
+	getFullPDFName: function() {
+		
+		this.child =  this.currentLabel.file.parent;
+		this.mother = this.child.parent;
+		this.father = this.mother.parent;
+	},
+
+/*
 	 * Экспорт готовой продукции
 	 * @returns void
 	 */
@@ -186,6 +198,8 @@ mc.prototype = {
 	sendtoHotFolder: function() {
 		this.ResultFilePDF.copy(this.hotFolder + '\\' + this.ResultFilePDF.name);	
 	},
+
+
 	/*
 	 * Закрываем активный документ
 	 * @returns void;

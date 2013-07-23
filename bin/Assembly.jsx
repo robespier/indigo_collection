@@ -20,6 +20,7 @@ assembly.prototype.imposeLabels = function() {
 		this.placeLabel(tc, this.labels[i]);
 		// Крутим
 		this.applyStyle();
+		this.getFullPDFName();	
 		this.exportPDF(this.getPDFName(i));
 		this.sendtoHotFolder(); // Кидаем сборку в горячую папку
 		this.currentLabel.remove();
@@ -32,14 +33,12 @@ assembly.prototype.imposeLabels = function() {
  * @returns string
  */
 assembly.prototype.getPDFName = function(index) {
-	// Корень задания
-	var child =  this.currentLabel.file.parent;
-	var mother = child.parent;
-	var father = mother.parent;
-	var PDFName = father.name + mother.name + child.name;
+	
+	
+	var PDFName = this.father.name + this.mother.name + this.child.name;
 
 	// Имя файла сборки
-	PDFName +='-' + this.currentLabel.file.name.replace ('eps', 'pdf');
-	return child + '\\' + PDFName;
+	PDFName +='_' + this.currentLabel.file.name.replace ('eps', 'pdf');
+	return this.child + '\\' + PDFName;
 }
 

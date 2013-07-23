@@ -29,6 +29,8 @@ matching.prototype.imposeLabels = function() {
 			this.applyStyle();
 		}
 		labelsCount -= cutsCount;
+		this.currentLabel.file = this.labels[0];
+		this.getFullPDFName();	
 		this.exportPDF(this.getPDFName(utvCount));
 		this.sendtoHotFolder(); // Кидаем сборку в горячую папку
 		utvCount++;
@@ -41,12 +43,7 @@ matching.prototype.imposeLabels = function() {
  * @returns string
  */
 matching.prototype.getPDFName = function(index) {
-	
-// 
-	var child =  this.currentLabel.file.parent;
-	var mother = child.parent;
-	var father = mother.parent;
-	
+
 // Определяем диапазон папок 
 	var targetName = [];
 		for (i=0, l=this.labels.length; i < l; i++) {
@@ -57,11 +54,11 @@ matching.prototype.getPDFName = function(index) {
 	
 range = targetName[0] + '-' + targetName[targetName.length-1];
 
-	var PDFName = father.name + mother.name + range;	
+	var PDFName = this.father.name + this.mother.name + range;	
 	
 
 // Имя файла сборки
 	PDFName +='_UTV_' + index.toString() + '.pdf';
 // Путь для файла сборки
-	return mother + '\\' + PDFName;
+	return this.child + '\\' + PDFName;
 }
