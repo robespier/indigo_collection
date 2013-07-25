@@ -22,11 +22,20 @@ mc.prototype = {
 		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 	},
 	/*
+	* Имя шаблона
+	*/
+	getTemplateName: function () {
+		var template = new File (this.templateFolder + '\\short\\' + this.temp + '_short' + '.ai'); //Ссылка на файл шаблона
+
+	return template;	
+	},
+
+	/*
 	 * Открытие шаблона
 	 * @returns Document Object
 	 */
 	openTemplate: function() {
-		var template = new File (this.templateFolder + '\\' + this.temp + '.ai'); //Ссылка на файл шаблона
+		var template = this.getTemplateName();
 		this.illustrator.open (template); //Открываем шаблон
 		var myDoc = app.activeDocument; //Создаем ссылку на активный документ
 		myDoc.rulerOrigin = [0,0]; //Обнуляем центр координат

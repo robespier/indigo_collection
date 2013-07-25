@@ -8,6 +8,13 @@ assembly.prototype.constructor = assembly;
 
 assembly.prototype.currentLabel = null;
 
+assembly.prototype.getTemplateName = function () {
+	var template = new File (this.templateFolder + '\\' + this.temp + '.ai');
+	
+	return template;
+	}
+
+
 /*
  * Размещение этикетки на листе
  * (Применение графического стиля)
