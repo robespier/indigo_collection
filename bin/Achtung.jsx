@@ -28,13 +28,9 @@ var height_percent = (myDoc.height*99)/achtungPlace.height;
 
 achtungPlace.resize (width_percent, height_percent);
 
-var labelsCount = this.labels.length;
-var achtCount = 1; // Счетчик имен сборок-ахтунгов
-		for (achtCount; achtCount<labelsCount; achtCount++) {
 
-	this.exportPDF(this.getPDFName(achtCount));
+	this.exportPDF(this.getPDFName());
 	this.sendtoHotFolder(); // Кидаем сборку в горячую папку
-		}
 }
 
 /*
@@ -63,7 +59,7 @@ range = targetName[0] + '-' + targetName[targetName.length-1];
 	
 
 // Имя файла сборки
-	PDFName +='_ACHTUNG_' + index.toString() + '.pdf';
+	PDFName +='_ACHTUNG.pdf';
 // Путь для файла сборки
-	return mother + '\\' + PDFName;
+	return child + '\\' + PDFName;
 }

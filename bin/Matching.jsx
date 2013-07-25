@@ -63,5 +63,5 @@ range = targetName[0] + '-' + targetName[targetName.length-1];
 // Имя файла сборки
 	PDFName +='_UTV_' + index.toString() + '.pdf';
 // Путь для файла сборки
-	return mother + '\\' + PDFName;
+	return  this.labels[0].parent + '\\' + PDFName;
 }
