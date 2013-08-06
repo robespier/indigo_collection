@@ -11,6 +11,8 @@ mc.prototype = {
 		this.task = '9111001'; //Определяем переменные для паспорта 
 		this.temp = 4090354; //шаблона
 		this.roll_number = 2; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
+		this.hotfolderName = 'CMYK';
+		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 		this.jobFolder = new Folder ('Y:\\d' + this.task); //Папка паспорта (рабочего каталога)
 		this.templateFolder = new Folder ('D:\\work\\template'); //Каталог шаблонов сборки
 		this.prListFolder = new Folder ('D:\\work\\print_list'); //Папка, где находятся принт-листы
@@ -18,16 +20,13 @@ mc.prototype = {
 		this.printList = []; //Массив строк из принт-листа
 		this.PDFSettings = new PDFSaveOptions(); // Настройки экспорта в PDF
 		this.PDFSettings.acrobatLayers = false;
-		this.hotfolderName = 'CMYK';
-		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 	},
 	/*
-	* Имя шаблона
-	*/
+	 * Имя шаблона
+	 */
 	getTemplateName: function () {
 		var template = new File (this.templateFolder + '\\short\\' + this.temp + '_short' + '.ai'); //Ссылка на файл шаблона
-
-	return template;	
+		return template;	
 	},
 
 	/*
@@ -85,7 +84,7 @@ mc.prototype = {
 	getLabels: function() {
 		this.labels = []; // Экземплярная переменная для хранения этикеток
 		this.prList.open(); // Открываем принт-лист ; TODO Слишком жесткая связь
-		
+
 		while (line=this.prList.readln()) {
 			file_name = line;
 			var labelObjectFile= new File (file_name); // Создаем ссылку на файл этикетки
@@ -178,6 +177,33 @@ mc.prototype = {
 		myStyle = this.getStyle();
 		myStyle.applyTo(this.currentLabel); // Применям графический стиль к этикетке
 	},
+
+	getPDFName: function(index) {
+
+	if (this.currentLabel instanceof File) {
+		this.child = this.currentLabel.parent;
+	} else {
+		this.child = this.currentLabel.file.parent;
+	}
+
+	var mother = this.child.parent;
+	var father = mother.parent;
+	
+		// Определяем диапазон папок 
+	var targetName = [];
+	for (i=0, l=this.labels.length; i < l; i++) {
+		targetName[i]= this.labels[i].parent.name;
+	}
+
+	targetName.sort();
+
+	this.range = targetName[0] + '_' + targetName[targetName.length-1];
+	
+	var NamePart = this.getNamePart(index);
+	var PDFName = father.name + mother.name;
+	return this.child + '\\' + PDFName + NamePart;
+	},
+
 	/*
 	 * Экспорт готовой продукции
 	 * @returns void
@@ -189,9 +215,9 @@ mc.prototype = {
 
 
 	/*
-	* Кидаем сборку в горячую папку
-	*/
-	
+	 * Кидаем сборку в горячую папку
+	 */
+
 	sendtoHotFolder: function() {
 		this.ResultFilePDF.copy(this.hotFolder + '\\' + this.ResultFilePDF.name);	
 	},
