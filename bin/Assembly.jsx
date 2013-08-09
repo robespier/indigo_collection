@@ -27,7 +27,7 @@ assembly.prototype.imposeLabels = function() {
 		this.placeLabel(tc, this.labels[i]);
 		// Крутим
 		this.applyStyle();
-		this.exportPDF(this.getPDFName(i));
+		this.exportPDF(this.currentLabel.file.parent + '\\' + this.getPDFName(i));
 		this.sendtoHotFolder(); // Кидаем сборку в горячую папку
 		this.currentLabel.remove();
 	}

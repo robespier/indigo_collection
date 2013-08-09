@@ -29,7 +29,7 @@ achtung.prototype.imposeLabels = function() {
 	achtungPlace.resize (width_percent, height_percent);
 
 	this.currentLabel = this.labels[0];
-	this.exportPDF(this.getPDFName());
+	this.exportPDF(this.currentLabel.parent + '\\' + this.getPDFName());
 	this.sendtoHotFolder(); // Кидаем сборку в горячую папку
 }
 

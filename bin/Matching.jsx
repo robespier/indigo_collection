@@ -29,7 +29,7 @@ matching.prototype.imposeLabels = function() {
 			this.applyStyle();
 		}
 		labelsCount -= cutsCount;
-		this.exportPDF(this.getPDFName(utvCount));
+		this.exportPDF(this.currentLabel.file.parent + '\\' + this.getPDFName(utvCount));
 		this.sendtoHotFolder(); // Кидаем сборку в горячую папку
 		utvCount++;
 	}

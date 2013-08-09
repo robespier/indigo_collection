@@ -201,7 +201,7 @@ mc.prototype = {
 	
 	var NamePart = this.getNamePart(index);
 	var PDFName = father.name + mother.name;
-	return this.child + '\\' + PDFName + NamePart;
+	return PDFName + NamePart;
 	},
 
 	/*

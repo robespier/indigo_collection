@@ -25,3 +25,12 @@ attention = new achtung(app);
 attention.setup();
 attention.run(); 
 
+/*
+// Лак-форма
+
+#include "Lacquer.jsx"
+varnish = new lacquer(app);
+varnish.setup();
+varnish.run();
+
+*/
