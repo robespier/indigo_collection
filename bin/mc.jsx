@@ -8,9 +8,9 @@ function mc(app) {
 
 mc.prototype = {
 	setup: function() {
-		this.task = '1171019'; //Определяем переменные для паспорта 
-		this.temp = 1152401; //шаблона
-		this.roll_number = 4; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
+		this.task = '3124071'; //Определяем переменные для паспорта 
+		this.temp = '1152099'; //шаблона высечки
+		this.roll_number = 0; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
 		this.hotfolderName = 'CMYK';
 		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 		this.jobFolder = new Folder ('Y:\\d' + this.task); //Папка паспорта (рабочего каталога)
