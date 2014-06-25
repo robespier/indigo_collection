@@ -8,9 +8,9 @@ function mc(app) {
 
 mc.prototype = {
 	setup: function() {
-		this.task = '3124071'; //Определяем переменные для паспорта 
-		this.temp = '1152099'; //шаблона высечки
-		this.roll_number = 0; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
+		this.task = '3104054'; //Определяем переменные для паспорта 
+		this.temp = '1152571'; //шаблона высечки
+		this.roll_number = 3; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
 		this.hotfolderName = 'CMYK';
 		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 		this.jobFolder = new Folder ('Y:\\d' + this.task); //Папка паспорта (рабочего каталога)
@@ -25,7 +25,7 @@ mc.prototype = {
 	 * Имя шаблона
 	 */
 	getTemplateName: function () {
-		var template = new File (this.templateFolder + '\\short\\' + this.temp + '_short' + '.ai'); //Ссылка на файл шаблона
+		var template = new File (this.templateFolder + '\\short\\' + this.temp + '_short' + '.ait'); //Ссылка на файл шаблона
 		return template;	
 	},
 
@@ -195,9 +195,34 @@ mc.prototype = {
 		targetName[i]= this.labels[i].parent.name;
 	}
 
-	targetName.sort();
+if (targetName.length == 1) {
+	this.range = targetName[0];
+	
+// Если массив из одного значения, то this.range равен ему.
+// в противном случае, мы проверяем на уникальность все элементы массива
 
-	this.range = targetName[0] + '_' + targetName[targetName.length-1];
+} else {
+		
+	targetName.sort();
+	var unique;
+	
+	for (i=1, l=targetName.length; i < l; i++) {
+		if (targetName[0] == targetName[i]) {
+			unique = 0;			
+		} else {
+			unique = 1;
+		}		
+	}
+
+	if (unique < 1) {
+	this.range = targetName[0];
+// если уникальность равна нулю, значит элементы  targetName одинаковые
+// и range будет представлен одним числом,
+// в противном случае, элементы  targetName - разные, тогда range будет составной.
+		} else {
+	this.range = targetName[0] + '_' + targetName[targetName.length-1];			
+	}
+}
 	
 	var NamePart = this.getNamePart(index);
 	var PDFName = father.name + mother.name;

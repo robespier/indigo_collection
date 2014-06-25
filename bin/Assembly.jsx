@@ -9,7 +9,7 @@ assembly.prototype.constructor = assembly;
 assembly.prototype.currentLabel = null;
 
 assembly.prototype.getTemplateName = function () {
-	var template = new File (this.templateFolder + '\\' + this.temp + '.ai');
+	var template = new File (this.templateFolder + '\\' + this.temp + '.ait');
 
 	return template;
 }

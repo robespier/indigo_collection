@@ -2,14 +2,6 @@
 
 #include "mc.jsx"
 
-// Обычная сборка
-
-#include "Assembly.jsx"
-make = new assembly(app);
-make.setup();
-make.run();
-
-
 // Сборка-утверждение
 
 #include "Matching.jsx"
@@ -24,6 +16,14 @@ collect.run();
 attention = new achtung(app);
 attention.setup();
 attention.run(); 
+
+
+// Обычная сборка
+
+#include "Assembly.jsx"
+make = new assembly(app);
+make.setup();
+make.run();
 
 /*
 // Лак-форма

@@ -9,7 +9,7 @@ lacquer.prototype.constructor = lacquer;
 lacquer.prototype.currentLabel = null;
 
 lacquer.prototype.getTemplateName = function () {
-		var template = new File (this.templateFolder + '\\lak\\' + this.temp + '_lak' + '.ai'); //Ссылка на файл шаблона
+		var template = new File (this.templateFolder + '\\lak\\' + this.temp + '_lak' + '.ait'); //Ссылка на файл шаблона
 
 	return template;
 }

@@ -30,7 +30,7 @@ achtung.prototype.imposeLabels = function() {
 
 	this.currentLabel = this.labels[0];
 	this.exportPDF(this.currentLabel.parent + '\\' + this.getPDFName());
-this.sendtoHotFolder(); // Кидаем сборку в горячую папку
+	this.sendtoHotFolder(); // Кидаем сборку в горячую папку
 }
 
 achtung.prototype.getNamePart = function() {
