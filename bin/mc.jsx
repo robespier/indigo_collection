@@ -8,14 +8,14 @@ function mc(app) {
 
 mc.prototype = {
 	setup: function() {
-		this.task = '1193003'; //Определяем переменные для паспорта 
-		this.temp = '1152165'; //шаблона высечки
-		this.roll_number = 0; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
+		this.task = '3104114'; //Определяем переменные для паспорта 
+		this.temp = '4152005'; //шаблона высечки
+		this.roll_number =0; //и намотки, которые задаются в окне диалога или выцепляются из базы данных
 		this.hotfolderName = 'CMYK';
 		this.hotFolder = new Folder ('X:\\' + this.hotfolderName); //Горячая папка
 		this.jobFolder = new Folder ('Y:\\d' + this.task); //Папка паспорта (рабочего каталога)
-		this.templateFolder = new Folder ('D:\\work\\template'); //Каталог шаблонов сборки
-		this.prListFolder = new Folder ('D:\\work\\print_list'); //Папка, где находятся принт-листы
+		this.templateFolder = new Folder ('T:\\'); //Каталог шаблонов сборки
+		this.prListFolder = new Folder ('P:\\'); //Папка, где находятся принт-листы
 		this.prList = new File (this.prListFolder + '\\d' + this.task + '.csv'); //Ссылка на файл принт-листа
 		this.printList = []; //Массив строк из принт-листа
 		this.PDFSettings = new PDFSaveOptions(); // Настройки экспорта в PDF
